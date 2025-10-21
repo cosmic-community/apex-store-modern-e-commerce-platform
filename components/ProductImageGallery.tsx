@@ -17,12 +17,19 @@ export default function ProductImageGallery({ images, productName }: ProductImag
     return null
   }
 
+  // Get current image with type safety
+  const currentImage = images[selectedImage]
+  
+  if (!currentImage) {
+    return null
+  }
+
   return (
     <div className="space-y-4">
       {/* Main Image */}
       <div className="aspect-square rounded-lg overflow-hidden bg-gray-200">
         <img
-          src={`${images[selectedImage].imgix_url}?w=1200&h=1200&fit=crop&auto=format,compress`}
+          src={`${currentImage.imgix_url}?w=1200&h=1200&fit=crop&auto=format,compress`}
           alt={`${productName} - Image ${selectedImage + 1}`}
           width={600}
           height={600}
